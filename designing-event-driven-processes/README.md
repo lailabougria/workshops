@@ -1,4 +1,4 @@
-# Designing event-driven processes
+# Beyond basic messaging: Designing long-running processes
 
 ## Abstract
 
