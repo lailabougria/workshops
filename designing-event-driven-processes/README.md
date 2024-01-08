@@ -7,11 +7,12 @@ Messaging in distributed systems offers a range of valuable benefits: it enables
 If you’ve been exposed to the basic building blocks of messaging and want to understand how to design, build, and test long-running processes in message-based distributed systems, this workshop is for you.
 
 Throughout this workshop, you’ll learn:
-- How to identify the long-running processes in your domain
-- Useful techniques to help you design these business processes
-- The orchestration and choreography patterns and when and why to use them
-- How to deal with actions that need to occur at different points in time
-- How to deal with events that occur out of order
+
+- How to identify long-running processes in your domain
+- Effective techniques to help design complex business processes
+- What orchestration and choreography is, but more importantly, when and why to use each pattern
+- How to deal with actions that occur at different points in time
+- How to deal with out-of-order events seamlessly
 - How to test workflows and troubleshoot issues where it matters most: in production!
 
 To get the most out of this workshop, some basic messaging knowledge is expected, including understanding message brokers and messaging patterns like Request-Reply and Publish-Subscribe. Get ready to dive into design exercises in small groups and unlock the secrets of messaging's real-world superpowers!
