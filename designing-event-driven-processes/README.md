@@ -1,0 +1,17 @@
+# Designing event-driven processes
+
+## Abstract
+
+Messaging in distributed systems offers a range of valuable benefits: it enables the design of decoupled components, where each component can evolve and scale individually. In addition, messaging improves the system’s fault tolerance but goes even further by opening the door to building self-healing systems. One benefit that doesn’t usually appear in the Googleable list of benefits is one of the most powerful: supporting real-life, long-running business processes and making the system mirror real-world business use cases. And that’s exactly the focus of this workshop.
+
+If you’ve been exposed to the basic building blocks of messaging and want to understand how to design, build, and test long-running processes in message-based distributed systems, this workshop is for you.
+
+Throughout this workshop, you’ll learn:
+- How to identify the long-running processes in your domain
+- Useful techniques to help you design these business processes
+- The orchestration and choreography patterns and when and why to use them
+- How to deal with actions that need to occur at different points in time
+- How to deal with events that occur out of order
+- How to test workflows and troubleshoot issues where it matters most: in production!
+
+To get the most out of this workshop, some basic messaging knowledge is expected, including understanding message brokers and messaging patterns like Request-Reply and Publish-Subscribe. Get ready to dive into design exercises in small groups and unlock the secrets of messaging's real-world superpowers!
