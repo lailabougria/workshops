@@ -8,6 +8,7 @@ If you’ve been exposed to the basic building blocks of messaging and want to u
 
 Throughout this workshop, you’ll learn:
 
+- What long-running processes are
 - How to identify long-running processes in your domain
 - Effective techniques to help design complex business processes
 - What orchestration and choreography is, but more importantly, when and why to use each pattern
