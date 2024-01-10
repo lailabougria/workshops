@@ -16,4 +16,8 @@ Throughout this workshop, you’ll learn:
 - How to deal with out-of-order events seamlessly
 - How to test workflows and troubleshoot issues where it matters most: in production!
 
-To get the most out of this workshop, some basic messaging knowledge is expected, including understanding message brokers and messaging patterns like Request-Reply and Publish-Subscribe. Get ready to dive into design exercises in small groups and unlock the secrets of messaging's real-world superpowers!
+To get the most out of this workshop, basic messaging knowledge is expected due to the limited time available. This includes understanding message brokers (like Azure Service Bus, RabbitMQ, or other broker technologies) and messaging patterns like Request-Reply and Publish-Subscribe. 
+
+Throughout this workshop, we'll dive into different design exercises in small groups, where you'll mostly need pen and paper. Code examples and exercises will be provided as additional material to showcase the use cases discussed during the workshop.
+
+Join me and unlock the secrets of messaging's real-world superpowers!
