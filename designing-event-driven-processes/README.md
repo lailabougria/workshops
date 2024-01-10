@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Messaging in distributed systems offers a range of valuable benefits: it enables the design of decoupled components, where each component can evolve and scale independently. In addition to improving the system’s fault tolerance, it opens the door to building self-healing systems. One benefit that doesn’t usually appear in the Googleable list of benefits is one of the most powerful: supporting real-life, long-running business processes and making the system mirror real-world business use cases. And that’s precisely the focus of this workshop.
+Messaging in distributed systems offers a range of valuable benefits: it enables the design of decoupled components, where each component can evolve and scale independently. In addition to improving the system’s fault tolerance, it opens the door to building truly self-healing systems. One benefit that doesn’t usually appear in the Googleable list of benefits is one of the most powerful: supporting real-life, long-running business processes and making the system mirror real-world business use cases. And that’s precisely the focus of this workshop.
 
 If you’re not entirely sure what a long-running process is, or if you've been exposed to the basic building blocks of messaging and want to understand how to design, build, and test long-running processes in message-based distributed systems, this workshop is for you.
 
