@@ -13,7 +13,7 @@ Throughout this workshop, you’ll learn:
 - What orchestration and choreography are, but more importantly, when and why to use each pattern
 - How to deal with actions that occur at different points in time
 - How to deal with out-of-order events seamlessly
-- How to test workflows and troubleshoot issues where it matters most: in production!
+- How to test long-running processes and troubleshoot issues where it matters most: in production!
 
 To get the most out of this workshop, basic messaging knowledge is expected due to the limited time available. This includes understanding message brokers (like Azure Service Bus, RabbitMQ, or other broker technologies) and messaging patterns like Request-Reply and Publish-Subscribe. 
 
