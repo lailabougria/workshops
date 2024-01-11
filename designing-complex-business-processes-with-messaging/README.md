@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Messaging in distributed systems offers a range of valuable benefits: it enables the design of decoupled components, where each component can evolve and scale independently. In addition to improving the system’s fault tolerance, it opens the door to building truly self-healing systems. But there's more to explore; the true power of messaging surfaces when we start expressing complex business processes with intention-revealing messages (both commands and events) to reflect what's happening in the real world. These business processes are usually non-trivial and exceed the boundaries of a single method- or service invocation and require us to redefine certain concepts, including time.
+Messaging in distributed systems offers a range of valuable benefits: it enables the design of decoupled components, where each component can evolve and scale independently. In addition to improving the system’s fault tolerance, it opens the door to building truly self-healing systems. But there's more to explore; the true power of messaging surfaces when we start expressing complex business processes with intention-revealing messages (both commands and events) to reflect what's happening in the real world. These business processes are usually non-trivial, exceed the boundaries of a single method- or service invocation, and require us to redefine certain concepts, including time.
 
 If you've been exposed to the basic building blocks of messaging and want to transition your system from a collection of meaningless and often highly-coupled service-to-service calls to one composed of carefully designed processes that reflect your business use cases, this workshop is for you.
 
