@@ -1,4 +1,4 @@
-# Beyond basic messaging: Designing long-running processes
+# Designing complex business processes with messaging
 
 ## Abstract
 
