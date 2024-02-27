@@ -6,6 +6,15 @@ Messaging in distributed systems offers a range of valuable benefits: it enables
 
 If you've been exposed to the basic building blocks of messaging and want to transition your system from a collection of meaningless and often highly-coupled service-to-service calls to one composed of carefully designed processes that reflect your business use cases, this workshop is for you.
 
+## Who should attend?
+
+To get the most out of this workshop, it's expected that:
+- You have a foundational understanding of messaging as an architectural style and the benefits it offers.
+- You understand the basic message-based communication patterns, including request-reply and publish-subscribe.
+- You have some experience using message brokers, such as Azure Service Bus, RabbitMQ, or other broker technologies.
+
+## What will you learn?
+
 Throughout this workshop, you’ll learn:
 
 - How to identify complex business processes in your domain
@@ -13,10 +22,9 @@ Throughout this workshop, you’ll learn:
 - What orchestration and choreography are, but more importantly, when and why to use each pattern
 - How to deal with actions that occur at different points in time
 - How to deal with out-of-order events seamlessly
-- How to test complex, long-running processes and troubleshoot issues where it matters most: in production!
+- How to test complex, long-running processes
+- How to leverage observability to troubleshoot issues where it matters most: in production!
 
-To get the most out of this workshop, basic messaging knowledge is expected due to the limited time available. This includes understanding message brokers (like Azure Service Bus, RabbitMQ, or other broker technologies) and messaging patterns like Request-Reply and Publish-Subscribe. 
-
-Throughout this workshop, we'll dive into different design exercises in small groups, where you'll mostly need pen and paper. Code examples and exercises will be provided as additional material to showcase the use cases discussed during the workshop.
+Throughout this workshop, we'll dive into design exercises in small groups that need just your imagination and something to write with. Later, we'll switch gears and get our hands on some coding exercises to bring those ideas to life using C#.
 
 Join me and unlock the secrets of messaging's real-world superpowers!
