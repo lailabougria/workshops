@@ -1,5 +1,7 @@
 # How to frame problems towards better solutions
 
+![problem framing](banner-problem-framing.png)
+
 ## Abstract
 
 Software solutions can help organizations streamline operations, improve efficiency, and help drive innovation, making software part of many organizations' strategies. A substantial amount of time, effort, and resources are invested in building these tools, but unfortunately, a significant number of these efforts fail. One core factor in these efforts' success is the ability of stakeholders and engineering teams to achieve a shared understanding of the problem they are addressing. Sounds obvious, right?! However, this is often the key point where most misalignment occurs (and goes unnoticed). It's easy to fall into the trap of miscommunicating the intent or framing problems as solutions, which can severely hinder a team's ability to approach problems with an open mind and free of bias.
