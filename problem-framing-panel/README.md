@@ -1,4 +1,4 @@
-# How to frame problems towards better solutions
+# Framing problems towards better solutions
 
 ![problem framing](banner-problem-framing.png)
 
