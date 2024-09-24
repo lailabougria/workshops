@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <LangVersion>12.0</LangVersion>
+    <RootNamespace>AspireDemo.AppHost</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.0" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="8.2.0" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="8.2.0" />
+    <PackageReference Include="Nall.Aspire.Hosting.DependsOn.PostgreSQL" Version="1.0.1" />
+    <PackageReference Include="Nall.Aspire.Hosting.DependsOn.RabbitMq" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Client\Client.csproj" />
+    <ProjectReference Include="..\CustomerSatisfaction\CustomerSatisfaction.csproj" />
+    <ProjectReference Include="..\Payments\Payments.csproj" />
+    <ProjectReference Include="..\Sales\Sales.csproj" />
+    <ProjectReference Include="..\Shipping\Shipping.csproj" />
+  </ItemGroup>
+
+</Project>
