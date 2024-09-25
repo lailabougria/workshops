@@ -17,6 +17,12 @@
 
 ## Bringing it all together in the user-interface
 
+### Techniques
+
+- [Micro-front ends](https://micro-frontends.org/)
+- [GraphQL](https://graphql.org/)
+- [NginX](https://nginx.org/en/)
+
 ### ViewModel composition
 
 ViewModel composition is a technique that Udi Dahan discusses in his [Advanced Distributed System Design course](https://particular.net/adsd).
@@ -24,10 +30,6 @@ Based on those insights, Mauro Servienti took the concept and turned into a seri
 
 An introductory article is available on [Particular Software's blog](https://particular.net/blog/secret-of-better-ui-composition).
 The full series is available on [Mauro's blog](https://milestone.topics.it/series/view-model-composition.html).
-
-### Micro-front ends
-
-A well-known approach is the [Micro-front ends technique](https://micro-frontends.org/), which is in many ways similar to the ViewModel composition approach.
 
 ## Talks to watch
 
