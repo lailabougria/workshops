@@ -112,3 +112,8 @@ The durable, resilient Dapr Workflow capability:
 - Provides SDKs for authoring workflows in code, using any language.
 - Provides HTTP and gRPC APIs for managing workflows (start, query, pause/resume, raise event, terminate, purge).
 - Integrates with any other workflow runtime via workflow components.
+
+## Additional reading
+
+- [Strangler fig pattern](https://martinfowler.com/bliki/StranglerFigApplication.html), by Martin Fowler
+- [Passive-aggressive events](https://martinfowler.com/articles/201701-event-driven.html), by Martin Fowler
