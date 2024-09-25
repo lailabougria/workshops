@@ -32,7 +32,7 @@ class ShippingPolicy : Saga<ShippingPolicyData>, IAmStartedByMessages<OrderPlace
         _logger.Info($"Order [{Data.OrderId}] - Order Placed. Start packing.");
             
         // Set a timeout to enforce the shipment SLA (in seconds, to speed things up)
-        await RequestTimeout<ShippingSLA>(context, TimeSpan.FromSeconds(20));
+        await RequestTimeout<ShippingSLA>(context, TimeSpan.FromSeconds(2));
             
         await context.SendLocal(new PackOrder { OrderId = Data.OrderId });
     }
@@ -59,7 +59,9 @@ class ShippingPolicy : Saga<ShippingPolicyData>, IAmStartedByMessages<OrderPlace
         _logger.Info($"Order [{message.OrderId}] - Started packing.");
             
         // Simulate a random delay in packing
-        await Task.Delay(TimeSpan.FromSeconds(_random.Next(1, 4)), context.CancellationToken);
+        var milliseconds = _random.Next(5, 30)*100;
+        _logger.Info($"Packing order will take {milliseconds}ms");
+        await Task.Delay(TimeSpan.FromMilliseconds(milliseconds), context.CancellationToken);
             
         Data.IsOrderPacked = true;
         await context.Publish<OrderPacked>(orderPacked => orderPacked.OrderId = Data.OrderId);
