@@ -11,6 +11,7 @@
 ### Blogposts and papers
 
 - [The many facets of coupling](https://www.enterpriseintegrationpatterns.com/ramblings/coupling_facets.html), by Gregor Hohpe
+- [Temporal coupling and immutability](https://enterprisecraftsmanship.com/posts/temporal-coupling-and-immutability/), by Vladimir Khorikov
 - [Back to basics: service boundaries](https://milestone.topics.it/2023/05/17/back-to-basics-boundaries.html), by Mauro Servienti
 - [Data on the Outside versus Data on the Inside](https://www.cidrdb.org/cidr2005/papers/P12.pdf), by Pat Helland
 
