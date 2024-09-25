@@ -14,6 +14,7 @@
 - [Temporal coupling and immutability](https://enterprisecraftsmanship.com/posts/temporal-coupling-and-immutability/), by Vladimir Khorikov
 - [Back to basics: service boundaries](https://milestone.topics.it/2023/05/17/back-to-basics-boundaries.html), by Mauro Servienti
 - [Data on the Outside versus Data on the Inside](https://www.cidrdb.org/cidr2005/papers/P12.pdf), by Pat Helland
+- [Putting your events on a diet](https://particular.net/blog/putting-your-events-on-a-diet), by David Boike
 
 ## Bringing it all together in the user-interface
 
