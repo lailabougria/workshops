@@ -63,6 +63,8 @@ Durable Functions is an extension of Azure Functions. You can use an orchestrato
 - Orchestrator functions are durable and reliable. Execution progress is automatically checkpointed when the function "awaits" or "yields". Local state is never lost when the process recycles or the VM reboots.
 - Orchestrator functions can be long-running. The total lifespan of an orchestration instance can be seconds, days, months, or never-ending.
 
+[Documentation](https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-orchestrations)
+
 #### [AWS Step Functions](https://aws.amazon.com/step-functions/)
 
 AWS Step Functions is a visual workflow service that helps developers use AWS services to build distributed applications, automate processes, orchestrate microservices, and create data and machine learning (ML)
