@@ -8,10 +8,11 @@
 - [Software Architecture: The hard parts](https://www.amazon.com/Software-Architecture-Parts-Neal-Ford-ebook/dp/B09H2H5QKC), by Neal Ford, Mark Richards, Pramod Sadalage, Zhamak Dehghani
 - [Building evolutionary architectures](https://www.amazon.com/Building-Evolutionary-Architectures-Neal-Ford-ebook/dp/B0BN4T1P27/), by Neal Ford, Rebecca Parsons, Patrick Kua, Pramod Sadalage
 
-### Blogposts
+### Blogposts and papers
 
 - [The many facets of coupling](https://www.enterpriseintegrationpatterns.com/ramblings/coupling_facets.html), by Gregor Hohpe
 - [Back to basics: service boundaries](https://milestone.topics.it/2023/05/17/back-to-basics-boundaries.html), by Mauro Servienti
+- [Data on the Outside versus Data on the Inside](https://www.cidrdb.org/cidr2005/papers/P12.pdf), by Pat Helland
 
 ## Bringing it all together in the user-interface
 
