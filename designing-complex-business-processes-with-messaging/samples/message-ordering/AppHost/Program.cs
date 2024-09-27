@@ -2,6 +2,7 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 var transport = builder.AddRabbitMQ("transport")
+    .WithManagementPlugin()
     .WithHealthCheck();
 
 builder.AddProject<Projects.CustomerSatisfaction>("customer-satisfaction")
@@ -25,7 +26,8 @@ var database = builder.AddPostgres("database")
     // NOTE: This is needed as the call to AddDatabase below
     // does not actually create the database
     .WithEnvironment("POSTGRES_DB", "shipping-db")
-    .WithPgWeb();
+    .WithPgWeb()
+    .WithImage("library/postgres", "15.8");
 
 var shippingDb = database.AddDatabase("shipping-db")
     .WithHealthCheck();
