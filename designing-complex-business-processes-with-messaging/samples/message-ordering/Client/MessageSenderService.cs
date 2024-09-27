@@ -15,8 +15,10 @@ class MessageSenderService(IMessageSession messageSession, ILogger<MessageSender
         log.LogInformation("Sending 10 orders");
         for (int i = 0; i < 10; i++)
         {
-            await messageSession.Send(new PlaceOrder { OrderId = Guid.NewGuid().ToString() }, cancellationToken: stoppingToken);
-            await Task.Delay(i++ * 100, stoppingToken);
+            var orderId = Guid.NewGuid().ToString();
+            await messageSession.Send(new PlaceOrder { OrderId = orderId }, cancellationToken: stoppingToken);
+            log.LogInformation("Order sent: {OrderId}", orderId);
+            await Task.Delay(i * 100, stoppingToken);
         }
         log.LogInformation("10 orders sent");
     }

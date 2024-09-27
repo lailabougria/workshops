@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using Messages;
 using NServiceBus;
 using NServiceBus.Logging;
 using System.Threading.Tasks;
-using NServiceBus.Sagas;
 using Shipping.Contracts;
 
 namespace Shipping;
@@ -28,17 +28,19 @@ class ShippingPolicy : Saga<ShippingPolicyData>, IAmStartedByMessages<OrderPlace
 
     public async Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
+        Activity.Current?.AddTag("order-id", Data.OrderId);
         Data.OrderId = message.OrderId;
         _logger.Info($"Order [{Data.OrderId}] - Order Placed. Start packing.");
             
         // Set a timeout to enforce the shipment SLA (in seconds, to speed things up)
-        await RequestTimeout<ShippingSLA>(context, TimeSpan.FromSeconds(20));
+        await RequestTimeout<ShippingSLA>(context, TimeSpan.FromSeconds(2));
             
         await context.SendLocal(new PackOrder { OrderId = Data.OrderId });
     }
 
     public Task Timeout(ShippingSLA state, IMessageHandlerContext context)
     {
+        Activity.Current?.AddTag("order-id", Data.OrderId);
         if (!Data.IsOrderShipped)
         {
             _logger.Info($"Order [{Data.OrderId}] - SLA expired. Cancelling order.");
@@ -50,6 +52,7 @@ class ShippingPolicy : Saga<ShippingPolicyData>, IAmStartedByMessages<OrderPlace
 
     public async Task Handle(PackOrder message, IMessageHandlerContext context)
     {
+        Activity.Current?.AddTag("order-id", Data.OrderId);
         if (Data.IsOrderCancelled)
         {
             _logger.Info($"Order [{message.OrderId}] - Order was cancelled, not packing");
@@ -67,6 +70,7 @@ class ShippingPolicy : Saga<ShippingPolicyData>, IAmStartedByMessages<OrderPlace
 
     public async Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
+        Activity.Current?.AddTag("order-id", Data.OrderId);
         if (Data.IsOrderCancelled)
         {
             _logger.Info($"Order [{message.OrderId}] - Order was cancelled, not shipping");
@@ -81,6 +85,7 @@ class ShippingPolicy : Saga<ShippingPolicyData>, IAmStartedByMessages<OrderPlace
 
     public Task Handle(OrderPacked message, IMessageHandlerContext context)
     {
+        Activity.Current?.AddTag("order-id", Data.OrderId);
         _logger.Info($"Order [{message.OrderId}] Order Packed - Start shipping.");
         return context.SendLocal(new ShipOrder { OrderId = Data.OrderId });
     }

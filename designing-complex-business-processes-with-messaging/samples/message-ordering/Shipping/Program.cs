@@ -21,6 +21,7 @@ class Program
         var connectionString = builder.Configuration.GetConnectionString("transport");
         var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
         endpointConfiguration.UseTransport(transport);
+        endpointConfiguration.EnableOutbox();
 
         var persistenceConnection = builder.Configuration.GetConnectionString("shipping-db");
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
