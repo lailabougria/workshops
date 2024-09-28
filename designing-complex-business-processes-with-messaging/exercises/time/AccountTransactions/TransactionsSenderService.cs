@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AccountTransactions.Contracts;
@@ -9,46 +8,60 @@ using NServiceBus;
 
 namespace Client;
 
-class TransactionsSenderService(IMessageSession messageSession, ILogger<TransactionsSenderService> log) : BackgroundService
+class TransactionsSenderService(IMessageSession messageSession, ILogger<TransactionsSenderService> logger) : BackgroundService
 {
-    public static Guid AccountId = new("AEB20C17-A983-4751-BA24-2F1DB1CAFD66");
-    private Random _random = new();
+    private static Guid _accountId = new("AEB20C17-A983-4751-BA24-2F1DB1CAFD66");
+    private readonly Random _random = new();
     
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        while (!stoppingToken.IsCancellationRequested)
+        // Initialize the negative balance
+        var balance = -100;
+        for (int i = 0; i < 5; i++)
         {
-            // Initialize the negative balance
+            logger.LogWarning("Negative balanced detected - Publishing NegativeAccountBalance event");
             await messageSession.Publish<NegativeAccountBalance>((transferred =>
             {
-                transferred.AccountId = AccountId;
-                transferred.Balance = -100;
+                transferred.AccountId = _accountId;
+                transferred.Balance = balance;
             }), cancellationToken: stoppingToken);
-            
+            balance = await RandomlyGenerateTransactionsUntilBalanceEventsOut(stoppingToken, balance);
+        }
+    }
+
+    private async Task<int> RandomlyGenerateTransactionsUntilBalanceEventsOut(CancellationToken stoppingToken, int balance)
+    {
+        do
+        {
             // Randomly send out transactions to the account
             var amount = _random.Next(150, 600);
-            var isDebit = _random.Next(0, 1) == 1;
+            var isDebit = _random.Next(1, 3) != 1;
             
             if (isDebit)
             {
+                balance -= amount;
                 await messageSession.Publish<DebitAmountTransferred>((transferred =>
                 {
-                    transferred.AccountId = AccountId;
+                    transferred.AccountId = _accountId;
                     transferred.Amount = amount;
                 }), cancellationToken: stoppingToken);
-                log.LogInformation($"Debit amount transferred: {amount}");
+                logger.LogInformation($"Debit amount transferred: -{amount}, balance is now {balance}");
             }
             else
             {
+                balance += amount;
                 await messageSession.Publish<CreditAmountTransferred>((transferred =>
                 {
-                    transferred.AccountId = AccountId;
+                    transferred.AccountId = _accountId;
                     transferred.Amount = amount;
                 }), cancellationToken: stoppingToken);
-                log.LogInformation($"Credit amount transferred: {amount}");
+                logger.LogInformation($"Credit amount transferred: {amount}, balance is now {balance}");
             }
 
             await Task.Delay(100, stoppingToken);
-        }
+        } while (balance < 0);
+        
+        logger.LogWarning("Balance replenished");
+        return balance;
     }
 }
