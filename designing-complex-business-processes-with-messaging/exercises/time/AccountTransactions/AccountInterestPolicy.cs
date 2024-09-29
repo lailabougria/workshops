@@ -23,6 +23,7 @@ class AccountInterestPolicy : Saga<AccountInterestPolicyData>, IAmStartedByMessa
     {
         Data.AccountId = message.AccountId;
         Data.Balance = message.Balance;
+        Data.NegativeAccountBalanceStartDate = message.BalanceTimestamp;
         
         _logger.Info($"Negative balance detected for account [{Data.AccountId}] - Start tracking.");
         return Task.CompletedTask;

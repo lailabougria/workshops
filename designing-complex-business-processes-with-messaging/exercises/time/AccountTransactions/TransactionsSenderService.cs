@@ -10,7 +10,7 @@ namespace Client;
 
 class TransactionsSenderService(IMessageSession messageSession, ILogger<TransactionsSenderService> logger) : BackgroundService
 {
-    private static Guid _accountId = new("AEB20C17-A983-4751-BA24-2F1DB1CAFD66");
+    private static Guid _accountId = Guid.NewGuid();
     private readonly Random _random = new();
     
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -24,7 +24,10 @@ class TransactionsSenderService(IMessageSession messageSession, ILogger<Transact
             {
                 transferred.AccountId = _accountId;
                 transferred.Balance = balance;
+                transferred.BalanceTimestamp = DateTime.UtcNow;
             }), cancellationToken: stoppingToken);
+            
+            await Task.Delay(500, stoppingToken);
             balance = await RandomlyGenerateTransactionsUntilBalanceEventsOut(stoppingToken, balance);
         }
     }
@@ -39,13 +42,13 @@ class TransactionsSenderService(IMessageSession messageSession, ILogger<Transact
             
             if (isDebit)
             {
-                balance -= amount;
+                balance += -amount;
                 await messageSession.Publish<DebitAmountTransferred>((transferred =>
                 {
                     transferred.AccountId = _accountId;
                     transferred.Amount = amount;
                 }), cancellationToken: stoppingToken);
-                logger.LogInformation($"Debit amount transferred: -{amount}, balance is now {balance}");
+                logger.LogInformation($"Debit amount transferred: -{amount} - Publishing DebitAmountTransferred event");
             }
             else
             {
@@ -55,13 +58,12 @@ class TransactionsSenderService(IMessageSession messageSession, ILogger<Transact
                     transferred.AccountId = _accountId;
                     transferred.Amount = amount;
                 }), cancellationToken: stoppingToken);
-                logger.LogInformation($"Credit amount transferred: {amount}, balance is now {balance}");
+                logger.LogInformation($"Credit amount transferred: {amount} - Publishing CreditAmountTransferred event");
             }
-
-            await Task.Delay(100, stoppingToken);
+            
+            await Task.Delay(_random.Next(2, 7)*100, stoppingToken);
         } while (balance < 0);
         
-        logger.LogWarning("Balance replenished");
         return balance;
     }
 }
