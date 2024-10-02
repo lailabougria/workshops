@@ -43,9 +43,7 @@ See [my talk](https://github.com/lailabougria/talks/tree/main/orchestration-vs-c
 
 ## Tooling
 
-### Tools
-
-#### [Azure Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview)
+### [Azure Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview)
 
 - Azure Logic Apps is a cloud platform where you can create and run automated workflows with little to no code.
 - Logic Apps are a designer-first serverless workflow integration platform.
@@ -54,7 +52,7 @@ See [my talk](https://github.com/lailabougria/talks/tree/main/orchestration-vs-c
 - Provides low-code-no-code toolsto develop highly scalable integration solutions for your enterprise and business-to-business (B2B) scenarios.
 - Choose from hundreds of prebuilt connectors so you can connect and integrate apps, data, services, and systems more easily and quickly. - Focus on designing and implementing your solution's business logic and functionality, not on figuring out how to access your resources.
 
-#### [Azure durable functions](https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-orchestrations?tabs=csharp-inproc)
+### [Azure durable functions](https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-orchestrations?tabs=csharp-inproc)
 
 Durable Functions is an extension of Azure Functions. You can use an orchestrator function to orchestrate the execution of other Durable functions within a function app. Orchestrator functions have the following characteristics:
 
@@ -65,7 +63,7 @@ Durable Functions is an extension of Azure Functions. You can use an orchestrato
 
 [Documentation](https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-orchestrations)
 
-#### [AWS Step Functions](https://aws.amazon.com/step-functions/)
+### [AWS Step Functions](https://aws.amazon.com/step-functions/)
 
 AWS Step Functions is a visual workflow service that helps developers use AWS services to build distributed applications, automate processes, orchestrate microservices, and create data and machine learning (ML)
 
@@ -76,13 +74,13 @@ Use cases include:
 - Automate extract, transform, and load (ETL) processes: Ensure that multiple long-running ETL jobs run in order and complete successfully, without the need for manual orchestration.
 - Automate security and IT functions: Create automated workflows, including manual approval steps, for security incident response.
 
-#### [NServiceBus Sagas](https://docs.particular.net/nservicebus/sagas/)
+### [NServiceBus Sagas](https://docs.particular.net/nservicebus/sagas/)
 
 NServiceBus sagas provide a mechanism to orchestrate long-running business processes. By configuring a persistence mechanism, sagas are also [stateful](https://docs.particular.net/nservicebus/sagas/#long-running-means-stateful), allowing them to store any required workflow state. It's possible to use sagas with both [command-driven](https://docs.particular.net/nservicebus/sagas/) and event-driven communication, but either way, it's in essence a form of orchestration, since it acts as a central point in managing a specific workflow.
 
 NServiceBus sagas can be deployed inside an existing service (on in NServiceBus terminology, an endpoint), or as a dedicated service. It's important to note that [when a saga is completed](https://docs.particular.net/nservicebus/sagas/#ending-a-saga), the saga state is removed from the configured data store.
 
-#### [Camunda](https://camunda.com/solutions/microservices-orchestration/)
+### [Camunda](https://camunda.com/solutions/microservices-orchestration/)
 
 - **State Handling**: Persists the state of each instance of a business process (e.g., each order placed on an ecommerce website)
 - **Explicit Processes**: Makes business processes explicit instead of burying them in code, making it easier for teams to understand and modify them
@@ -93,7 +91,7 @@ NServiceBus sagas can be deployed inside an existing service (on in NServiceBus 
 - **Transparency of Status**: Enables operations teams to monitor the status of process instances in real time
 - **Collaboration**: Provides graphical models of business processes that facilitate discussion between business stakeholders, developers, and operations teams
 
-#### [Netflix Conductor](https://conductor.netflix.com/index.html)
+### [Netflix Conductor](https://conductor.netflix.com/index.html)
 
 [Netflix Conductor](https://netflixtechblog.com/netflix-conductor-a-microservices-orchestrator-2e8d4771bf40) is an orchestration engine aimed to take out the need for boilerplate code in applications, provide a reactive flow and address the following requirements:
 - Tracking and management of workflows.
@@ -104,7 +102,7 @@ NServiceBus sagas can be deployed inside an existing service (on in NServiceBus 
 - Backed by a queuing service abstracted from the clients.
 - Be able to operate over HTTP or other transports e.g. gRPC.
 
-#### [Dapr Workflow](https://docs.dapr.io/developing-applications/building-blocks/workflow/workflow-overview/)
+### [Dapr Workflow](https://docs.dapr.io/developing-applications/building-blocks/workflow/workflow-overview/)
 
 Dapr workflow provides a stateful solution to support long-running and fault-tolerant applications, ideal for orchestrating microservices. Dapr workflow works seamlessly with other Dapr building blocks, such as service invocation, pub/sub, state management, and bindings.
 
