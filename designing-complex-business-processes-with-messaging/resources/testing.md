@@ -14,3 +14,7 @@
 - [Trace-based Testing the OpenTelemetry Demo, by Daniel Dias ](https://opentelemetry.io/blog/2023/testing-otel-demo/)
 - [Trace-Based Testing with OpenTelemetry: Meet Open Source Malabi](https://medium.com/opentelemetry/trace-based-testing-with-opentelemetry-meet-open-source-malabi-7ca268788aae), by Michael Haberman
 - [Introduction to trace-based testing with OpenTelemetry](https://tracetest.io/blog/introducing-tracetest-trace-based-testing-with-opentelemetry), TraceTest
+
+## Additional resources
+
+- [.NET 8 Finally Gives Us A Time Abstraction - TimeProvider](https://blog.nimblepros.com/blogs/finally-an-abstraction-for-time-in-net/)
