@@ -12,9 +12,17 @@ class TransactionsSenderService(IMessageSession messageSession, ILogger<Transact
 {
     private static Guid _accountId = Guid.NewGuid();
     private readonly Random _random = new();
-    
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        // Uncomment when there's a handler for the below message
+        // Initialize the interest period
+        // await messageSession.SendLocal(new StartInterestPeriod
+        // {
+        //     AccountId = _accountId,
+        //     StartDate = new DateTime(DateTime.Today.Year, 1, 1)
+        // }, cancellationToken: stoppingToken);
+        
         // Initialize the negative balance
         var balance = -100;
         for (int i = 0; i < 5; i++)
@@ -26,10 +34,12 @@ class TransactionsSenderService(IMessageSession messageSession, ILogger<Transact
                 transferred.Balance = balance;
                 transferred.BalanceTimestamp = DateTime.UtcNow;
             }), cancellationToken: stoppingToken);
-            
+
             await Task.Delay(500, stoppingToken);
             balance = await RandomlyGenerateTransactionsUntilBalanceEventsOut(stoppingToken, balance);
         }
+        
+        logger.LogInformation("Done generating transactions");
     }
 
     private async Task<int> RandomlyGenerateTransactionsUntilBalanceEventsOut(CancellationToken stoppingToken, int balance)
@@ -37,9 +47,9 @@ class TransactionsSenderService(IMessageSession messageSession, ILogger<Transact
         do
         {
             // Randomly send out transactions to the account
-            var amount = _random.Next(150, 600);
+            var amount = _random.Next(15, 40) * 10;
             var isDebit = _random.Next(1, 3) != 1;
-            
+
             if (isDebit)
             {
                 balance += -amount;
@@ -60,10 +70,10 @@ class TransactionsSenderService(IMessageSession messageSession, ILogger<Transact
                 }), cancellationToken: stoppingToken);
                 logger.LogInformation($"Credit amount transferred: {amount} - Publishing CreditAmountTransferred event");
             }
-            
+
             await Task.Delay(_random.Next(2, 7)*100, stoppingToken);
         } while (balance < 0);
-        
+
         return balance;
     }
 }
