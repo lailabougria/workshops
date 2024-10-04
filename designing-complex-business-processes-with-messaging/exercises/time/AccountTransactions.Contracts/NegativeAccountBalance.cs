@@ -9,4 +9,5 @@ public class NegativeAccountBalance : IEvent
 {
     public Guid AccountId { get; set; }
     public decimal Balance { get; set; }
+    public DateTime BalanceTimestamp { get; set; }
 }
