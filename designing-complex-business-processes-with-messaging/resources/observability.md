@@ -11,6 +11,7 @@
 - [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/)
 - [OpenTelemetry Collector Architecture](https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/design.md)
 - [OpenTelemetry Collector scaling](https://opentelemetry.io/docs/collector/scaling/)
+- [Building a secure OpenTelemetry collector](https://martinjt.me/2023/12/20/building-a-secure-opentelemetry-collector/), by Martin Thwaites
 
 ### Semantic Conventions
 
