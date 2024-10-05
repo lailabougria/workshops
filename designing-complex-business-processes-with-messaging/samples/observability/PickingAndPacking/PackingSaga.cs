@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Contracts;
 using NServiceBus.Logging;
 using PickingAndPacking.InternalContracts;
@@ -27,6 +28,10 @@ public class PackingSaga : Saga<PackingSagaData>,
     
    public async Task Handle(PackOrder message, IMessageHandlerContext context)
    {
+       using Activity? activity = Shared.PickingAndPackingSource.StartActivity("pack_order");
+       activity?.SetTag("order_id", message.OrderId);
+       activity?.SetTag("packing_sla", SLA.ToString());
+
        Data.OrderId = message.OrderId;
        Data.ProductsToPack = message.Orderlines.Select(x => new PackingSagaData.OrderLinePackingStatus
        {
