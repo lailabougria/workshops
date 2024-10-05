@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using PickingAndPacking.InternalContracts;
 using Contracts;
 
@@ -33,15 +34,21 @@ public sealed class ProductStore
    
     public bool ReserveProduct(Guid productId, int quantity)
     {
+        Activity? activity = Shared.PickingAndPackingSource.StartActivity("product_store.reserve_product");
+        activity?.AddTag("product_id", productId);
+        
         var product = GetProduct(productId);
         var semaphore = GetSemaphoreForProduct(productId);
         semaphore.Wait();
         var isReserved = false;
+        
         if (product.Stock >= quantity)
         {
             product.Stock -= quantity;
             isReserved = true;
+            activity?.AddEvent(new ActivityEvent("ProductReserved"));
         }
+        activity?.AddEvent(new ActivityEvent("InsufficienStock"));
 
         semaphore.Release();
         return isReserved;
@@ -49,6 +56,10 @@ public sealed class ProductStore
 
     public void RestockProduct(Guid productId, int quantity)
     {
+        Activity? activity = Shared.PickingAndPackingSource.StartActivity("product_store.restock_product");
+        activity?.AddTag("product_id", productId);
+        activity?.AddTag("restock_quantity", quantity);
+        
         var product = GetProduct(productId);
         var semaphore = GetSemaphoreForProduct(productId);
         semaphore.Wait();

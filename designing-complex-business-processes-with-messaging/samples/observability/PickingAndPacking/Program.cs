@@ -23,6 +23,7 @@ public class Program
                     .ConfigureResource(resourceBuilder => resourceBuilder.AddService(endpointName))
                     .WithTracing(tracingBuilder => tracingBuilder
                         .AddSource("NServiceBus.*")
+                        .AddSource(Shared.PickingAndPackingSource.Name)
                         //.AddSource("Azure.*")
                         .AddAzureMonitorTraceExporter(options =>
                         {

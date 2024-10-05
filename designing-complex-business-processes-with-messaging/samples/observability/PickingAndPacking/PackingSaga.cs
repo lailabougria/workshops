@@ -83,8 +83,11 @@ public class PackingSaga : Saga<PackingSagaData>,
     public async Task Timeout(PackingSlaExceeded state, IMessageHandlerContext context)
     {
         Logger.Warn($"Packing SLA exceeded for order {Data.OrderId}");
+        Activity? activity = Shared.PickingAndPackingSource.StartActivity("packing_sla_exceeded");
+        activity?.AddTag("order_id", Data.OrderId);
 
         var productsMissing = Data.ProductsToPack.Where(x => !x.IsFullyPacked).ToList();
+        activity?.AddTag("missing_products", productsMissing);
         await context.Publish<IPartialOrderPacked>(partialOrder =>
         {
             partialOrder.OrderId = Data.OrderId;
@@ -98,10 +101,16 @@ public class PackingSaga : Saga<PackingSagaData>,
 
     public async Task Handle(ReserveProduct message, IMessageHandlerContext context)
     {
+        Activity? activity = Shared.PickingAndPackingSource.StartActivity("packing_saga.reserve_product");
+        activity?.AddTag("order_id", Data.OrderId);
+        activity?.AddTag("product_id", message.ProductId);
+        activity?.AddTag("quantity", message.Quantity);
+        
         var reserved = ProductStore.GetInstance().ReserveProduct(message.ProductId, message.Quantity);
         if (reserved)
         {
             Logger.Info($"Not enough stock to reserve {message.Quantity} items of product {message.ProductId} for order {message.OrderId}, requesting a back order...");
+            activity?.AddEvent(new ActivityEvent("InsufficientStock"));
             Data.ProductRestocksInProgress.Add(message.ProductId);
             await context.SendLocal(new BackOrderProduct{
                 OrderId = message.OrderId, 
@@ -110,6 +119,7 @@ public class PackingSaga : Saga<PackingSagaData>,
             return;
         }
         
+        activity?.AddEvent(new ActivityEvent("ProductReserved"));
         Logger.Info($"Reserved {message.Quantity} items of product {message.ProductId} for order {message.OrderId}");
         await context.SendLocal(new ProductReserved
         {
@@ -121,6 +131,11 @@ public class PackingSaga : Saga<PackingSagaData>,
 
     public Task Handle(BackOrderProduct message, IMessageHandlerContext context)
     {
+        Activity? activity = Shared.PickingAndPackingSource.StartActivity("packing_saga.back_order_product");
+        activity?.AddTag("order_id", Data.OrderId);
+        activity?.AddTag("product_id", message.ProductId);
+        activity?.AddTag("quantity", message.Quantity);
+        
         Random random = new Random();
         var restockInTime = random.Next(0, 1) == 1;
 
@@ -137,6 +152,11 @@ public class PackingSaga : Saga<PackingSagaData>,
 
     public async Task Handle(ProductRestocked message, IMessageHandlerContext context)
     {
+        Activity? activity = Shared.PickingAndPackingSource.StartActivity("packing_saga.product_restocked");
+        activity?.AddTag("order_id", Data.OrderId);
+        activity?.AddTag("product_id", message.ProductId);
+        activity?.AddTag("quantity", message.Quantity);
+        
         Logger.Info($"Restocked product {message.ProductId} for order {message.OrderId}");
         ProductStore.GetInstance().RestockProduct(message.ProductId, message.Quantity);
         Data.ProductRestocksInProgress.Remove(message.ProductId);
