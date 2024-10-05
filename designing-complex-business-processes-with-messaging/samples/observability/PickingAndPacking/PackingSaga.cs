@@ -66,6 +66,8 @@ public class PackingSaga : Saga<PackingSagaData>,
         Data.ProductsToPack.First(x => x.ProductId == message.ProductId).PackedQuantity = message.Quantity;
         if (Data.ProductsToPack.All(x => x.IsFullyPacked))
         {
+            Activity? activity = Shared.PickingAndPackingSource.StartActivity("all_products_reserved");
+            activity?.AddTag("order_id", Data.OrderId);
             Logger.Warn($"All products for order {Data.OrderId} have been packed!");
             await context.Publish<IOrderPacked>(packed =>
             {
@@ -75,7 +77,13 @@ public class PackingSaga : Saga<PackingSagaData>,
             if (Data.ProductRestocksInProgress.Count == 0)
             {
                 Logger.Warn($"All done for order {Data.OrderId}");
+                activity?.AddEvent(new ActivityEvent("Finalizing saga"));
                 MarkAsComplete();
+            }
+            else
+            {
+                activity?.AddEvent(new ActivityEvent("Keeping saga open, restock in progress"));
+                activity?.AddTag("restocks_in_progress", Data.ProductRestocksInProgress);
             }
         }
     }
