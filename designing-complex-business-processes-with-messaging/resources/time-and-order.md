@@ -7,6 +7,11 @@
 - [Amazon SQS delay queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-delay-queues.html)
 - [RabbitMQ Delayed Message Plugin](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange)
 
+## What is outbox
+
+- [What is Outbox and how does it work](https://docs.particular.net/nservicebus/outbox/#how-it-works)
+- [Transactional session](https://docs.particular.net/nservicebus/transactional-session/)
+
 ## Priority queues
 
 - [Priority queue pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/priority-queue), Azure Architecture Center
