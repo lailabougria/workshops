@@ -43,5 +43,5 @@ This is a Bring Your Own Device (BYOD) workshop. Therefore, attendees are requir
 
 In addition, it's helpful to have accounts ready to use for:
 
-- Microsoft, so that you can access the Azure portal
+- Miro account, for design exercises (a free account is sufficient)
 - GitHub, for access to exercises and additional material
