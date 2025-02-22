@@ -21,6 +21,7 @@ class TransactionsSenderService(IMessageSession messageSession, ILogger<Transact
             AccountId = _accountId,
             StartDate = new DateTime(DateTime.Today.Year, 1, 1)
         }, cancellationToken: stoppingToken);
+        
         // Initialize the negative balance
         var balance = -100;
         for (int i = 0; i < 5; i++)
