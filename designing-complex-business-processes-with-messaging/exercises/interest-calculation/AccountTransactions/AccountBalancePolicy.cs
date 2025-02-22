@@ -48,12 +48,12 @@ public class AccountBalancePolicy : Saga<AccountBalancePolicyData>,
         if (Data.Balance > 0)
         {
             _logger.Warn($"Balance is now replenished. Stop tracking.");
-            // await context.Publish<AccountBalanceRestored>(restored =>
-            // {
-            //     restored.AccountId = Data.AccountId;
-            //     restored.LowestBalance = Data.LowestBalance;
-            //     restored.DaysUnderZero = Convert.ToInt32(DateTime.UtcNow.Subtract(Data.NegativeAccountBalanceStartDate).TotalMilliseconds/100);
-            // });
+            await context.Publish<AccountBalanceRestored>(restored =>
+            {
+                restored.AccountId = Data.AccountId; 
+                restored.LowestBalance = Data.LowestBalance; 
+                restored.DaysUnderZero = Convert.ToInt32(DateTime.UtcNow.Subtract(Data.NegativeAccountBalanceStartDate).TotalMilliseconds/100); 
+            });
             MarkAsComplete();
         }
     }
