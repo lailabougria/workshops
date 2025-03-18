@@ -4,9 +4,11 @@ Here's an overview of the following dates for the workshop.
 
 ## Upcoming
 
-| Conference                                                                                                     | Date                | Location               | Duration |
-| -------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------- | -------- |
-| [NDC Oslo](https://ndcoslo.com/workshops/designing-complex-business-processes-with-messaging/a979d8cf55dd)     | May 19-23, 2025     | Oslo, Norway           | 2 days   |
+| Conference                                                                                                              | Date                  | Location               | Duration |
+| ----------------------------------------------------------------------------------------------------------------------- | --------------------- | ---------------------- | -------- |
+| [NDC Oslo](https://ndcoslo.com/workshops/designing-complex-business-processes-with-messaging/a979d8cf55dd)              | May 19-23, 2025       | Oslo, Norway           | 2 days   |
+| [NDC Copenhagen](https://ndccopenhagen.com/workshops/designing-complex-business-processes-with-messaging/c9723a4b1fc9)  | September 8-12, 2025  | Copenhagen, Denmark    | 2 days   |
+
 
 ## Past
 
