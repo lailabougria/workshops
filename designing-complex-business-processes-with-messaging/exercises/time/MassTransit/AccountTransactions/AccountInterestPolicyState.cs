@@ -11,4 +11,5 @@ class AccountInterestPolicyState : SagaStateMachineInstance
     
     public Guid CorrelationId { get; set; }
     public required string CurrentState { get; set; }
+    public decimal LowestBalance { get; set; }
 }
