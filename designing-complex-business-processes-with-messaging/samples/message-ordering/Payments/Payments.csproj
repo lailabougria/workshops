@@ -5,7 +5,7 @@
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="9.1.1" />
     <ProjectReference Include="..\ServiceDefaults\ServiceDefaults.csproj" />
     <ProjectReference Include="..\Shipping.Contracts\Shipping.Contracts.csproj" />

@@ -3,8 +3,7 @@ using Projects;
 var builder = DistributedApplication.CreateBuilder(args);
 
 var transport = builder.AddRabbitMQ("transport")
-    .WithManagementPlugin()
-    .WithHealthCheck();
+    .WithManagementPlugin();
 
 builder.AddProject<Projects.Marketing>("marketing")
     .WithReference(transport)
@@ -29,8 +28,7 @@ var database = builder.AddPostgres("database")
     .WithPgWeb()
     .WithImage("library/postgres", "15.8");
 
-var packingDb = database.AddDatabase("packing-db")
-    .WithHealthCheck();
+var packingDb = database.AddDatabase("packing-db");
 
 var pickingAndPacking = builder.AddProject<Projects.PickingAndPacking>("picking-and-packing")
     .WithReference(transport)

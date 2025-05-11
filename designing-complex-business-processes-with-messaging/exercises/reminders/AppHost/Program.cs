@@ -1,8 +1,7 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 var transport = builder.AddRabbitMQ("transport")
-    .WithManagementPlugin()
-    .WithHealthCheck();
+    .WithManagementPlugin();
 
 var database = builder.AddPostgres("database")
     // NOTE: This is needed as the call to AddDatabase below
@@ -11,8 +10,7 @@ var database = builder.AddPostgres("database")
     .WithPgWeb()
     .WithImage("library/postgres", "15.8");
 
-var transactionsDb = database.AddDatabase("transactions-db")
-    .WithHealthCheck();
+var transactionsDb = database.AddDatabase("transactions-db");
 
 builder.AddProject<Projects.AccountTransactions>("account-transactions")
     .WithReference(transport)

@@ -60,7 +60,7 @@ public class Program
                 var connectionString = Environment.GetEnvironmentVariable("Workshop_ServiceBus_ConnectionString");
                 if (string.IsNullOrEmpty(connectionString))
                     throw new InvalidOperationException("Please specify a connection string for the broker.");
-                var transport = new AzureServiceBusTransport(connectionString);
+                var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
                 var routing = endpointConfiguration.UseTransport(transport);
                 routing.RouteToEndpoint(typeof(ProductRestocked), "PickingAndPacking");
                 

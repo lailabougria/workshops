@@ -2,8 +2,7 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 var transport = builder.AddRabbitMQ("transport")
-    .WithManagementPlugin()
-    .WithHealthCheck();
+    .WithManagementPlugin();
 
 builder.AddProject<Projects.CustomerSatisfaction>("customer-satisfaction")
     .WithReference(transport)
@@ -29,8 +28,7 @@ var database = builder.AddPostgres("database")
     .WithPgWeb()
     .WithImage("library/postgres", "15.8");
 
-var shippingDb = database.AddDatabase("shipping-db")
-    .WithHealthCheck();
+var shippingDb = database.AddDatabase("shipping-db");
 
 builder.AddProject<Projects.Shipping>("shipping")
     .WithReference(transport)
