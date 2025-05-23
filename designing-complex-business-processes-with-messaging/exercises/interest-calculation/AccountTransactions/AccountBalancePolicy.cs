@@ -10,7 +10,8 @@ public class AccountBalancePolicy : Saga<AccountBalancePolicyData>,
     IAmStartedByMessages<NegativeAccountBalance>,
     IHandleMessages<CreditAmountTransferred>,
     IHandleMessages<DebitAmountTransferred>,
-    IHandleTimeouts<NegativeAccountBalanceReminder>
+    IHandleTimeouts<NegativeAccountBalanceReminder>,
+    IHandleTimeouts<BlockAccountReminder>
 {
     static ILog _logger = LogManager.GetLogger<AccountBalancePolicy>();
 
@@ -73,46 +74,43 @@ public class AccountBalancePolicy : Saga<AccountBalancePolicyData>,
     public async Task Timeout(NegativeAccountBalanceReminder state, IMessageHandlerContext context)
     {
         _logger.Info($"Timeout received, balance is still negative: {Data.Balance}");
-        if (state.NumberOfTimesReminded == 0)
+        
+        state.NumberOfTimesReminded++;
+        _logger.Warn($"Account [{Data.AccountId}] has a negative balance of {Data.Balance}. Sending reminder {state.NumberOfTimesReminded}.");
+        
+        if (state.NumberOfTimesReminded < 3)
         {
-            // First reminder
-            _logger.Warn($"Account [{Data.AccountId}] has a negative balance of {Data.Balance}. Sending first reminder.");
-            
-            // Schedule second reminder
-            await RequestTimeout(context, TimeSpan.FromSeconds(2), new NegativeAccountBalanceReminder
+            // Schedule next reminder
+            await RequestTimeout(context, TimeSpan.FromSeconds(1), new NegativeAccountBalanceReminder
             {
-                NumberOfTimesReminded = 1
+                NumberOfTimesReminded = state.NumberOfTimesReminded
             });
         }
-        else if (state.NumberOfTimesReminded == 1)
+        else
         {
-            // Second reminder
-            _logger.Warn($"Account [{Data.AccountId}] has a negative balance of {Data.Balance}. Sending second reminder.");
-            
-            // Schedule third reminder
-            await RequestTimeout(context, TimeSpan.FromSeconds(3), new NegativeAccountBalanceReminder
-            {
-                NumberOfTimesReminded = 2
-            });
+            // We are done with the reminders, now we'll schedule a timeout to block the account
+            await RequestTimeout(context, TimeSpan.FromSeconds(1), new BlockAccountReminder());
         }
-        else if (state.NumberOfTimesReminded == 2)
+    }
+
+    public async Task Timeout(BlockAccountReminder state, IMessageHandlerContext context)
+    {
+        // Send a message to block the account
+        // Remember that this is a saga and therefore should only orchestrate, not execute
+        // the business logic itself
+        await context.Send(new BlockAccount
         {
-            // Third and final reminder
-            _logger.Warn($"Account [{Data.AccountId}] has a negative balance of {Data.Balance}. Now we're blocking your account.");
-            
-            // Block account after 1 second
-            var sendOptions = new SendOptions();
-            sendOptions.DelayDeliveryWith(TimeSpan.FromSeconds(1));
-            sendOptions.RouteToThisEndpoint();
-            await context.Send(new BlockAccount
-            {
-                AccountId = Data.AccountId
-            }, sendOptions);
-        }
+            AccountId = Data.AccountId
+        });
+        MarkAsComplete();
     }
 }
 
 public class NegativeAccountBalanceReminder
 {
     public int NumberOfTimesReminded { get; set; }
+}
+
+public class BlockAccountReminder
+{
 }
