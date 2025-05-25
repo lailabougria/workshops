@@ -1,4 +1,4 @@
-# Advanced patterns for event-driven workflows
+# Mastering complex event-driven architectures
 
 Check the [agenda](agenda.md) to see where the next workshop will run!
 
