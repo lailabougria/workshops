@@ -1,6 +1,8 @@
 # Agenda
 
-Here's an overview of the following dates for the workshop.
+Here's an overview of the following dates for the workshop. Feel free to 
+[reach out](mailto:laila@igindo.com) if you would like to book a workshop for 
+your conference or company.
 
 ## Upcoming
 
