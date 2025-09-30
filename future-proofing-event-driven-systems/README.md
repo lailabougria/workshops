@@ -1,4 +1,4 @@
-# Future proofing event-driven systems
+# Future-proofing event-driven systems
 
 Check the [agenda](agenda.md) to see where the next workshop will run!
 
