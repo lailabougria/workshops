@@ -16,7 +16,6 @@ class Program
         var builder = Host.CreateApplicationBuilder();
 
         var endpointConfiguration = new EndpointConfiguration("AccountTransactions");
-        endpointConfiguration.EnableOpenTelemetry();
 
         builder.AddServiceDefaults();
 

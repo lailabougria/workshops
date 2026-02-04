@@ -64,7 +64,7 @@ Join me and unlock the secrets of messaging's real-world superpowers!
 This is a Bring Your Own Device (BYOD) workshop. Therefore, attendees are 
 required to bring their own device with the necessary software already installed:
 
-- .NET 8 or higher
+- .NET 10 or higher
 - Visual Studio/Rider/VS Code
 - Docker
 

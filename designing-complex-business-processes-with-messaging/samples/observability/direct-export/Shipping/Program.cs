@@ -61,9 +61,7 @@ public class Program
                 var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
                    
                 endpointConfiguration.UseTransport(transport);
-                
                 endpointConfiguration.EnableInstallers();
-                endpointConfiguration.EnableOpenTelemetry();
 
                 return endpointConfiguration;
             }).Build();

@@ -1,7 +1,14 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var transport = builder.AddRabbitMQ("transport")
-    .WithManagementPlugin();
+var transportUserName = builder.AddParameter("transportUserName", "guest", secret: true);
+var transportPassword = builder.AddParameter("transportPassword", "guest", secret: true);
+
+var transport = builder.AddRabbitMQ("transport", transportUserName, transportPassword)
+    .WithManagementPlugin(15672)
+    .WithUrlForEndpoint("management", url => url.DisplayText = "RabbitMQ Management");
+
+transportUserName.WithParentRelationship(transport);
+transportPassword.WithParentRelationship(transport);
 
 var database = builder.AddPostgres("database")
     // NOTE: This is needed as the call to AddDatabase below

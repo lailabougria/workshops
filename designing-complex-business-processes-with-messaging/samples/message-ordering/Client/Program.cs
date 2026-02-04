@@ -16,7 +16,6 @@ class Program
         builder.AddServiceDefaults();
 
         var endpointConfiguration = new EndpointConfiguration("Client");
-        endpointConfiguration.EnableOpenTelemetry();
 
         var connectionString = builder.Configuration.GetConnectionString("transport");
         var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
