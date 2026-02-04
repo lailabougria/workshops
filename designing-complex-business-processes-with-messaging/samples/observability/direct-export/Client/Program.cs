@@ -71,7 +71,6 @@ public class Program
                 routing.RouteToEndpoint(typeof(ChargeOrder), "Payments");
                    
                 endpointConfiguration.EnableInstallers();
-                endpointConfiguration.EnableOpenTelemetry();
 
                 return endpointConfiguration;
             }).Build();

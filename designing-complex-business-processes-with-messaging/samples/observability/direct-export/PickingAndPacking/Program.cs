@@ -67,7 +67,6 @@ public class Program
                 endpointConfiguration.UsePersistence<LearningPersistence>();
                 
                 endpointConfiguration.EnableInstallers();
-                endpointConfiguration.EnableOpenTelemetry();
 
                 return endpointConfiguration;
             }).Build();

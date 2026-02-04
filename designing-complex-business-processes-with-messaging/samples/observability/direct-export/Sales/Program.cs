@@ -63,7 +63,6 @@ public class Program
                 endpointConfiguration.UseTransport(transport);
                 
                 endpointConfiguration.EnableInstallers();
-                endpointConfiguration.EnableOpenTelemetry();
 
                 return endpointConfiguration;
             }).Build();
