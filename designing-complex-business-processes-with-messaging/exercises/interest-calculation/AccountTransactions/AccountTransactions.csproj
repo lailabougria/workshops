@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Npgsql" Version="9.0.3" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.1.2" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="9.1.1" />
+    <PackageReference Include="Npgsql" Version="10.0.1" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="9.0.0" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="11.0.0" />
     <ProjectReference Include="..\ServiceDefaults\ServiceDefaults.csproj" />
     <ProjectReference Include="..\AccountTransactions.Contracts\AccountTransactions.Contracts.csproj" />
   </ItemGroup>
