@@ -15,7 +15,6 @@ class Program
         var builder = Host.CreateApplicationBuilder();
 
         var endpointConfiguration = new EndpointConfiguration(EndpointName);
-        endpointConfiguration.EnableOpenTelemetry();
 
         builder.AddServiceDefaults();
 
